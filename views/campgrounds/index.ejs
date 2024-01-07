@@ -1,0 +1,38 @@
+<!-- passing everything to boilerplate template -->
+<% layout('layouts/boilerplate.ejs') %>
+
+    <div id="cluster-map"></div>
+    <h1>All Campgrounds</h1>
+    
+        <a class = "btn btn-primary mb-4" href="/campgrounds/new">Add a Campground</a>
+    
+    
+        <% for(let campground of campgrounds){ %>
+            <div class = "card mb-3">
+                <div class = "row">
+                    <div class = "col-md-4">
+                        <% if(campground.images){ %>
+                        <img src = "<%=campground.images[0].url%>" class="img-fluid" alt="">
+                        <% }else{ %>
+                            <img src = "https://res.cloudinary.com/duhazr5mo/image/upload/v1704248764/YelpCamp/noImgAvailable_rxtyzn.webp" class="img-fluid" alt="">
+                        <% } %>
+                    </div>
+                    <div class = "col-md-8">
+                        <div class ="card-body">
+                            <h5 class = "card-title"><%=campground.title %></h5>
+
+                            <p class = "card-text"><%=campground.description%></p>
+                            <p class = "card-text"><small><%=campground.location%></small></p>
+                            <a class = "btn btn-primary" href="/campgrounds/<%=campground._id%>">View</a>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <% } %>
+    <script>
+        //to have access in script public/javascripts/showPageMap
+        const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+        // setting features to our campgrounds for the purposes of mapbox expecting a features object
+        const campgrounds ={features: <%-JSON.stringify(campgrounds)%>}
+    </script>
+    <script src ="/javascripts/clusterMap.js"></script>

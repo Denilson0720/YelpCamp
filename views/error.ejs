@@ -1,0 +1,16 @@
+<!-- Error template to be renderde by our basic error callback from app.js -->
+<% layout('layouts/boilerplate.ejs') %>
+<div class = "row">
+    <div class = "col-6 offset-3">
+        <div class = "alert alert-danger" role = "alert">
+            <h4 class = "alert-heading"><%=err.message%></h4>
+            <h5>For Devs:</h5>
+            <!-- if not in production aka dev mode, displaty err.stack -->
+            <!-- currently in dev atm -->
+            <%  if(process.env.NODE_ENV !=='production'){ %>
+            <p><%= err.stack %></p>
+            <% } %>
+        </div>
+    </div>
+</div>
+
