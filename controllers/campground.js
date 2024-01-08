@@ -60,10 +60,17 @@ module.exports.renderEditCampgroundForm = async (req,res)=>{
     res.render('campgrounds/edit',{campground});
 };
 module.exports.editCampground = async(req,res)=>{
+    // get GeoJson data to update geometry
+    const geoData = await geocoder.forwardGeocode({
+        query:req.body.campground.location,
+        limit:1
+       }).send()
     const {id} = req.params;
     console.log(req.body);
     // find campground 
     const campground = await Campground.findByIdAndUpdate(id,{ ...req.body.campground});
+    // update geometry value for mapbox
+    campground.geometry = geoData.body.features[0].geometry;
     const imgs = req.files.map(f=>({url:f.path,filename:f.filename}))
     // push the new images alongside the existent images, so as to not overwrite them
     // spread the imgs to pass then into the push function as individual files
