@@ -184,11 +184,6 @@ app.use((req,res,next)=>{
 
     next();
 })
-app.get('/fakeUser',async(req,res)=>{
-    const user = new User({email:'colttt@getMaxListeners.com',username:'colt123'})
-    const newUser = await User.register(user,'chicken')
-    res.send(newUser);
-})
 
 // all routes that start with /campgrounds use...
 app.use('/campgrounds',campgroundRoutes);
