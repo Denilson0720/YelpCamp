@@ -8,7 +8,7 @@ module.exports.registerUser = async(req,res,next)=>{
     try{
     const {email,username,password} = req.body;
     const user = new User({email,username});
-    // make a new userusing the user and hashed password, password npm does hashing and salts BTS
+    // make a new userusing the user and hashed password, password pqcakge does hashing and salts BTS
     const registeredUser = await User.register(user,password);
     req.login(registeredUser,err=>{
         if(err) return next(err);

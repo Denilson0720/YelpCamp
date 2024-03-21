@@ -38,5 +38,5 @@ YelpCamp is a campgrounds tracker where users can access different locations set
 
 ## Deployed at:
 
-Note: Due to Renders free tier of deployment after 15 minutes of inactivity the instance will spin down until the next request. If you are the first user within 15 minutes please allow a longer loading time for your initial request to the site.🙂<br>
-<a href = "https://yelpcamp-db9a.onrender.com/">YelpCamp.com<a>
+Using Digital Ocean`s App Platform: <br/>
+<a href = 'https://octopus-app-8nqq5.ondigitalocean.app/'>Yelpcamp.com</a>
